@@ -11,6 +11,7 @@ const SideBar = (props) => {
 
   return (
     <Menu
+      
       floated
       stackable
       style={{ height: "100vh" }}
