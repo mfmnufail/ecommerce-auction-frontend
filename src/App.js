@@ -1,10 +1,17 @@
+import SideBar from "./Components/SideBar";
+import {Button} from "semantic-ui-react"
+import { BrowserRouter } from "react-router-dom";
+import MenuBar from "./Components/MenuBar";
 
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hi from React</h1>
-    </div>
+
+    <BrowserRouter>
+    <MenuBar/>
+    <SideBar/>
+    </BrowserRouter>
+ 
   );
 }
 
