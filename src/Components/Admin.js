@@ -1,4 +1,6 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { useEffect } from "react";
 import {
   Label,
   TextArea,
@@ -11,13 +13,15 @@ import {
   Dropdown,
   Container,
 } from "semantic-ui-react";
+import Product from "./Product";
 
 const Admin = () => {
-  const [product, setProduct] = useState("");
+  const [productName, setProductName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [error, setError] = useState("");
+ 
 
   const options = [
     { key: "meats", text: "Meats", value: "meat" },
@@ -34,15 +38,26 @@ const Admin = () => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    const data = {};
-    //  axios.post("http://localhost:4000/favmodel", data)
+    
+    
+
+    const data = {
+      productName: productName,
+      description: description,
+      price:price,
+      category:category
+    };
+     axios.post("http://localhost:8080/api/product", data)
     //  .then((response)=>{
     //     console.log("Response from admin " + response)
+       
     //  })
 
-    // .catch(err => {
-    //   setError(err.response.data.errors);
-    // });
+    .catch(err => {
+      setError(err.response.data.errors);
+    });
+
+    window.location.reload()
   };
 
   return (
@@ -54,7 +69,7 @@ const Admin = () => {
             name="productName"
             label={`Product Name`}
             placeholder="Product Name"
-            onChange={(e) => setProduct(e.target.value)}
+            onChange={(e) => setProductName(e.target.value)}
             autoComplete="off"
           />
         </Form>
@@ -106,6 +121,10 @@ const Admin = () => {
           </Message>
         )}
       </Form>
+
+      <Divider/>
+
+      <Product isAdmin={true}/>
     </Container>
   );
 };
