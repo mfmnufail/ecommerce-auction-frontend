@@ -7,7 +7,7 @@ import Lists from "../Components/Lists";
 import Orders from "../Components/Orders";
 
 
-const index = () => {
+const AppRoute = () => {
   return (
     <Routes>
       <Route path="/dashboard" element={<Dashboard/>} />
@@ -19,4 +19,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default AppRoute;

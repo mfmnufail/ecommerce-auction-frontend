@@ -23,6 +23,7 @@ const Admin = () => {
   const [error, setError] = useState("");
  
 
+  /* MOVE CONSTANTS TO A DIFERENT FILE */
   const options = [
     { key: "meats", text: "Meats", value: "meat" },
     { key: "seafood", text: "Seafood", value: "seafood" },
@@ -47,6 +48,10 @@ const Admin = () => {
       price:price,
       category:category
     };
+
+    /* MOVES URLS TO A CONFIG FILE
+     * BETTER TO MOVE AXIOS TO REDUX
+    */ 
      axios.post("http://localhost:8080/api/product", data)
     //  .then((response)=>{
     //     console.log("Response from admin " + response)
