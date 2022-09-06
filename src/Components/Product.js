@@ -1,20 +1,29 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, Card, Divider, Icon, Image, Label, Placeholder } from 'semantic-ui-react'
+import { fetchProduct } from '../Store/Product/product-action';
 
 const Product = ({isAdmin}) => {
 
-    const [products, setProducts] = useState([]);
+  const products = useSelector((state)=> state.product.products)
+  const dispatch = useDispatch();
 
-    useEffect(()=>{
-      axios.get("http://localhost:8080/api/product").then((response)=>{
+  useEffect(()=>{
+    dispatch(fetchProduct())
+  },[dispatch])
+
+    // const [products, setProducts] = useState([]);
+
+    // useEffect(()=>{
+    //   axios.get("http://localhost:8080/api/product").then((response)=>{
    
-        setProducts(response.data)
-        console.log("Response from products " + JSON.stringify(response.data))
+    //     setProducts(response.data)
+    //     console.log("Response from products " + JSON.stringify(response.data))
          
-    })
+    // })
   
-    },[])
+    // },[])
 
 
   return (
