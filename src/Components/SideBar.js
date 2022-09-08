@@ -9,6 +9,8 @@ const SideBar = (props) => {
     setActiveItem(name);
   }
 
+  
+
   return (
     <Menu
       floated

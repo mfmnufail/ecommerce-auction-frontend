@@ -15,7 +15,7 @@ const requests = {
   post: (url, body) =>
     axios.post(url, body).then(sleep(1000)).then(responseBody),
   put: (url, body) =>
-    axios.put(url, body, config).then(sleep(1000)).then(responseBody),
+    axios.put(url, body).then(sleep(1000)).then(responseBody),
   del: (url) => axios.delete(url).then(sleep(1000)).then(responseBody),
   
 };

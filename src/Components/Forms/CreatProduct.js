@@ -1,6 +1,7 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import {
   Label,
   TextArea,
@@ -13,14 +14,21 @@ import {
   Dropdown,
   Container,
 } from "semantic-ui-react";
-import Product from "./Product";
+import { createProducts } from "../../Store/Product/product-action";
+import FormBar from "./FormBar";
+import Product from "../Product";
+import { AccountContext } from "./accountContext";
 
-const Admin = () => {
+const CreatProduct = () => {
   const [productName, setProductName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [error, setError] = useState("");
+
+
+
+ 
  
 
   /* MOVE CONSTANTS TO A DIFERENT FILE */
@@ -35,13 +43,13 @@ const Admin = () => {
     { key: "dispenser", text: "Bispenser", value: "dispenser" },
     { key: "equipment", text: "Equipment", value: "equipment" },
   ];
+  
+  const dispatch = useDispatch()
 
   const submitHandler = (event) => {
     event.preventDefault();
 
-    
-    
-
+  
     const data = {
       productName: productName,
       description: description,
@@ -49,18 +57,8 @@ const Admin = () => {
       category:category
     };
 
-    /* MOVES URLS TO A CONFIG FILE
-     * BETTER TO MOVE AXIOS TO REDUX
-    */ 
-     axios.post("http://localhost:8080/api/product", data)
-    //  .then((response)=>{
-    //     console.log("Response from admin " + response)
-       
-    //  })
-
-    .catch(err => {
-      setError(err.response.data.errors);
-    });
+    
+    dispatch(createProducts(data));
 
     window.location.reload()
   };
@@ -134,4 +132,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default CreatProduct;
