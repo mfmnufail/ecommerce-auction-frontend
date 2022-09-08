@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Card, Divider, Icon, Image, Label, Placeholder } from 'semantic-ui-react'
-import { fetchProduct } from '../Store/Product/product-action';
+import { deleteProducts, fetchProducts } from '../Store/Product/product-action';
 
 const Product = ({isAdmin}) => {
 
@@ -10,20 +10,14 @@ const Product = ({isAdmin}) => {
   const dispatch = useDispatch();
 
   useEffect(()=>{
-    dispatch(fetchProduct())
+    dispatch(fetchProducts())
   },[dispatch])
 
-    // const [products, setProducts] = useState([]);
+  function deleteHandler(id){
+      dispatch(deleteProducts(id))
+      window.location.reload()
+  }
 
-    // useEffect(()=>{
-    //   axios.get("http://localhost:8080/api/product").then((response)=>{
-   
-    //     setProducts(response.data)
-    //     console.log("Response from products " + JSON.stringify(response.data))
-         
-    // })
-  
-    // },[])
 
 
   return (
@@ -64,7 +58,7 @@ const Product = ({isAdmin}) => {
           
           
           }
-         { isAdmin && <Button color='google plus'>Delete</Button>}
+         { isAdmin && <Button onClick={()=>deleteHandler(product.id)} color='google plus'>Delete</Button>}
         </Card.Content>
       </Card>
     ))}
