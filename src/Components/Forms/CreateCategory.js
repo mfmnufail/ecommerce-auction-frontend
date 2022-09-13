@@ -1,8 +1,14 @@
-import React, { useState } from "react";
-import { Form, Input } from "semantic-ui-react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, Divider, Form, Icon, Input, Label } from "semantic-ui-react";
+import { Categories } from "../../API/agent";
+import { creatCategories, fetchCategories } from "../../Store/Category/category-action";
 
 const CreateCategory = () => {
   const [categoryName, setCategoryName] = useState("");
+
+
+
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -10,8 +16,7 @@ const CreateCategory = () => {
     const data = {
       categoryName: categoryName,
     };
-
-    // dispatch(createProducts(data));
+    creatCategories(data);
 
     window.location.reload();
   };
@@ -21,17 +26,23 @@ const CreateCategory = () => {
       <Form onSubmit={submitHandler}>
         <Form Field>
           <Input
-            fluid
-            icon="tags"
-            iconPosition="left"
-            label={{ tag: true, content: "Add Category" }}
-            labelPosition="right"
+            // label='Category'
+            style={{ width: "90%" }}
             placeholder="Enter category"
             autoComplete="off"
             onChange={(e) => setCategoryName(e.target.value)}
           />
+
+          <Button primary type="submit">
+            Submit
+          </Button>
         </Form>
       </Form>
+
+      <Divider/>
+
+      <Categories/>
+
     </div>
   );
 };
