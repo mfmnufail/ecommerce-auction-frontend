@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Card } from 'semantic-ui-react'
 import { fetchCategories } from '../Store/Category/category-action';
@@ -7,6 +7,7 @@ const Category = () => {
 
     const dispatch = useDispatch();
     const categories = useSelector((state)=> state.category.categories)
+
   
     useEffect(()=>{
       dispatch(fetchCategories())
@@ -14,7 +15,7 @@ const Category = () => {
 
   return (
     <Card.Group>
-        {categories.map(e=>(
+        {categories && categories.map(e=>(
 
             <Card>
             <Card.Content>

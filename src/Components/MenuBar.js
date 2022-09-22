@@ -11,7 +11,7 @@ const MenuBar = () => {
           src="https://www.sysco.com/dam/jcr:2ed25439-a58a-41d2-8306-dcf3761c7d95/Sysco-Logo-Color1.png"
         />
 
-        <Label as="a" basic color="blue" pointing="left">
+        <Label  as="a" basic color="blue" pointing="left">
           Shop
         </Label>
       </Menu.Item>

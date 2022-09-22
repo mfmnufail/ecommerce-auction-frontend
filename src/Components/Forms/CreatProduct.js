@@ -60,7 +60,7 @@ const CreatProduct = () => {
     
     dispatch(createProducts(data));
 
-    window.location.reload()
+    // window.location.reload()
   };
 
   return (

@@ -5,6 +5,7 @@ import FormBar from "../Components/Forms/FormBar";
 import Dashboard from "../Components/Dashboard";
 import Lists from "../Components/Lists";
 import Orders from "../Components/Orders";
+import Login from "../Components/Login";
 
 
 const AppRoute = () => {
@@ -15,6 +16,7 @@ const AppRoute = () => {
       <Route path="/orders" element={<Orders/>} />
       <Route path="/account" element={<Account/>} />
       <Route path="/admin" element={<FormBar/>} />
+      <Route path="/login" element={<Login/>} />
     </Routes>
   );
 };

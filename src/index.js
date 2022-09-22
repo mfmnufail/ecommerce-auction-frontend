@@ -6,13 +6,22 @@ import 'semantic-ui-css/semantic.min.css';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux'
 import store from './Store'
+import {Auth0Provider} from '@auth0/auth0-react'
+import {DOMAIN, CLIENTID} from './Utils/constants'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Auth0Provider
+      domain={DOMAIN}
+      clientId={CLIENTID}
+      redirectUri= {window.location.origin}
+    >
     <Provider store={store}>
     <App />
     </Provider>
+
+    </Auth0Provider>
   </React.StrictMode>
 );
 
