@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@auth0/auth0-react": "^1.11.0",
     "@reduxjs/toolkit": "1.8.5",
     "@semantic-ui-react/css-patch": "1.1.2",
     "axios": "0.27.2",
