@@ -28,7 +28,7 @@ export const Products = {
 export const Categories = {
   list: () => requests.get("/api/category"),
 
-  create: (category) => requests.post("/api/category", category),
+  create: (category) => {requests.post("/api/category", category); console.log("category"+ category)},
 
   update: (category, id) => requests.put(`/api/category/${id}`, category),
 

@@ -15,7 +15,7 @@ const Product = ({isAdmin}) => {
 
   function deleteHandler(id){
       dispatch(deleteProducts(id))
-      window.location.reload()
+      // window.location.reload()
   }
 
 
