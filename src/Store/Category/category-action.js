@@ -12,23 +12,35 @@ export const fetchCategories = () => {
   };
 };
 
-export const creatCategories = (catgory) => {
-  return async () => {
-    try {
-      createCategory(catgory);
-    } catch (e) {
-      console.log("Error in creating products!!");
-    }
-  };
+export const creatCategories=(category)=>{
+ Categories.create(category);
+
 };
 
-const createCategory = async(category) => {
-  const response = await Categories.create(category);
-  if (!response) {
-    throw new Error("Could not create category");
+export const deleteCategories=(id)=>{
+  return async()=>{
+      try{
+          deleteCategory(id);
+      }catch(e){
+          console.log("Error in deleting product")
+      }
   }
-  return response;
-};
+}
+
+const deleteCategory = async(id)=>{
+  const response = await Categories.delete(id);
+  if(!response){
+      throw new Error("Could not delete product")
+  }
+  return response
+}
+
+
+
+
+
+
+
 
 const fetchCategory = async () => {
   const response = await Categories.list();

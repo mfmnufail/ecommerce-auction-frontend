@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Label,
   TextArea,
@@ -17,9 +17,15 @@ import {
 import { createProducts } from "../../Store/Product/product-action";
 import FormBar from "./FormBar";
 import Product from "../Product";
+import { fetchCategories } from "../../Store/Category/category-action";
 
 
 const CreatProduct = () => {
+
+ 
+
+
+
   const [productName, setProductName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -28,24 +34,19 @@ const CreatProduct = () => {
 
 
 
- 
- 
 
-  /* MOVE CONSTANTS TO A DIFERENT FILE */
-  const options = [
-    { key: "meats", text: "Meats", value: "meat" },
-    { key: "seafood", text: "Seafood", value: "seafood" },
-    { key: "frozen", text: "Frozen", value: "frozen" },
-    { key: "canned", text: "Canned", value: "canned" },
-    { key: "poultry", text: "Poultry", value: "poultry" },
-    { key: "produce", text: "Produce", value: "produce" },
-    { key: "diary", text: "Diary", value: "diary" },
-    { key: "dispenser", text: "Bispenser", value: "dispenser" },
-    { key: "equipment", text: "Equipment", value: "equipment" },
-  ];
-  
   const dispatch = useDispatch()
+  const categories = useSelector((state)=> state.category.categories)
+  const options = []
+  categories.forEach(e=> options.push({key:e.categoryName, text:e.categoryName,value:e.categoryName}))
 
+  useEffect(()=>{
+    dispatch(fetchCategories())
+    
+  },[dispatch])
+
+ 
+ 
   const submitHandler = (event) => {
     event.preventDefault();
 

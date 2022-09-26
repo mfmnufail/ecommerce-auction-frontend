@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Card } from 'semantic-ui-react'
-import { fetchCategories } from '../Store/Category/category-action';
+import { Button, Card } from 'semantic-ui-react'
+import { deleteCategories, fetchCategories } from '../Store/Category/category-action';
 
 const Category = () => {
 
@@ -13,6 +13,10 @@ const Category = () => {
       dispatch(fetchCategories())
     },[dispatch])
 
+    function deleteHandler(id){
+      dispatch(deleteCategories(id))
+  }
+
   return (
     <Card.Group>
         {categories && categories.map(e=>(
@@ -22,9 +26,12 @@ const Category = () => {
                 <Card.Header>{e.categoryName}</Card.Header>
                 <Card.Meta>Category</Card.Meta>
             </Card.Content>
+            <Button onClick={()=>deleteHandler(e.categoryId)} color='google plus'>Delete</Button>
             </Card>
 
+
         ))
+
 
         }
     </Card.Group>

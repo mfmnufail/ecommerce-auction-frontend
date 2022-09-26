@@ -14,9 +14,11 @@ const CreateCategory = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+ 
     const data={
       categoryName:categoryName
     }
+    console.log("Category data" + JSON.stringify(data))
     creatCategories(data)
   };
 
@@ -33,6 +35,8 @@ const CreateCategory = () => {
           Submit
         </Button>
       </Form>
+      <Divider/>
+      <Category/>
     </div>
   );
 };
