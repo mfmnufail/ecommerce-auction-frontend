@@ -6,6 +6,7 @@ import Dashboard from "../Components/Dashboard";
 import Lists from "../Components/Lists";
 import Orders from "../Components/Orders";
 import Login from "../Components/Login";
+import Cart from "../Components/Cart";
 
 
 const AppRoute = () => {
@@ -17,6 +18,7 @@ const AppRoute = () => {
       <Route path="/account" element={<Account/>} />
       <Route path="/admin" element={<FormBar/>} />
       <Route path="/login" element={<Login/>} />
+      <Route path="/cart" element={<Cart/>}/>
     </Routes>
   );
 };
