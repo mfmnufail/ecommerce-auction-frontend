@@ -38,7 +38,7 @@ const CreatProduct = () => {
   const dispatch = useDispatch()
   const categories = useSelector((state)=> state.category.categories)
   const options = []
-  categories.forEach(e=> options.push({key:e.categoryName, text:e.categoryName,value:e.categoryName}))
+  categories.forEach(e=> options.push({key:e.categoryId, text:e.categoryName,value:e.categoryId}))
 
   useEffect(()=>{
     dispatch(fetchCategories())
@@ -55,8 +55,10 @@ const CreatProduct = () => {
       productName: productName,
       description: description,
       price:price,
-      category:category
+      categoryId:category
     };
+
+    console.log("product data" + JSON.stringify(data))
 
     
     dispatch(createProducts(data));
@@ -128,7 +130,7 @@ const CreatProduct = () => {
 
       <Divider/>
 
-      <Product isAdmin={true}/>
+      {/* <Product isAdmin={true}/> */}
     </Container>
   );
 };

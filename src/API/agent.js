@@ -23,6 +23,8 @@ export const Products = {
   update: (product, id) => requests.put(`/api/product/${id}`, product),
 
   delete: (id) => requests.del(`/api/product/${id}`),
+
+  listByCategoryId: (id) => requests.get(`/api/product/category/${id}`),
 };
 
 export const Categories = {

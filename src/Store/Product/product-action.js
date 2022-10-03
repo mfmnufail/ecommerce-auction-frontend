@@ -5,11 +5,23 @@ import { productActions } from './product-slice'
 export const fetchProducts = ()=>{
     return async(dispatch)=>{
         try{
-            const products = await fetchData();
-            console.log("products", products)
+            const products = await fetchProduct();
+           
             dispatch(productActions.fetchProduct(products))
         } catch(e){
             console.log("Error in fetching products")
+        }
+    }
+}
+
+export const fetchProductsByCategories = (id)=>{
+    return async(dispatch)=>{
+        try{
+            const products = await fetchProductByCategory(id);
+            
+            dispatch(productActions.fetchProductByCategory(products))
+        } catch(e){
+            console.log("Error in fetching products by category")
         }
     }
 }
@@ -53,10 +65,19 @@ const deleteProduct = async(id)=>{
 
 
 
-const fetchData = async()=>{
+const fetchProduct = async()=>{
     const response = await Products.list();
     if(!response){
         throw new Error("Could not fetch products")
+    }
+
+    return response;
+}
+
+const fetchProductByCategory = async(id)=>{
+    const response = await Products.listByCategoryId(id);
+    if(!response){
+        throw new Error("Could not fetch products by category id")
     }
 
     return response;
