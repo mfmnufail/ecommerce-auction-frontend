@@ -51,7 +51,7 @@ const MenuBar = () => {
               basic: true,
               color: "linkedin",
               pointing: "left",
-              content: "2,048",
+              content: "0",
             }}
           />
         </Menu.Item>

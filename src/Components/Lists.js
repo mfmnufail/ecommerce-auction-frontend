@@ -11,17 +11,38 @@ import {
   Rating,
   Table,
 } from "semantic-ui-react";
-import { fetchProducts } from "../Store/Product/product-action";
+import { useQurey } from "../Hooks/queryHook";
+import {
+  fetchProducts,
+  fetchProductsByCategories,
+} from "../Store/Product/product-action";
 
 const Lists = () => {
-  const [quantity, setQuantity] = useState();
+  const [quantity, setQuantity] = useState(1);
+
+  const [categoryId, setCategoryId] = useState(null);
+  const query = useQurey();
+
+  const productsByCategory = useSelector(
+    (state) => state.product.productsByCategory
+  );
 
   const products = useSelector((state) => state.product.products);
+
+  const showProducts = categoryId ? productsByCategory : products;
+
+  console.log("products" + JSON.stringify(products));
+  console.log("products by category" + JSON.stringify(productsByCategory));
+
+  console.log(quantity)
+
   const dispatch = useDispatch();
 
   useEffect(() => {
+    setCategoryId(query.get("categoryId"));
     dispatch(fetchProducts());
-  }, [dispatch]);
+    dispatch(fetchProductsByCategories(categoryId));
+  }, [dispatch,showProducts]);
   return (
     <Container>
       <Table
@@ -44,7 +65,7 @@ const Lists = () => {
         </Table.Header>
 
         <Table.Body>
-          {products.map((product) => (
+          {showProducts.map((product) => (
             <Table.Row>
               <Table.Cell>
                 <Header as="h4" image>
@@ -55,7 +76,9 @@ const Lists = () => {
                   />
                   <Header.Content>
                     {product.productName}
-                    <Header.Subheader>{product.category}</Header.Subheader>
+                    <Header.Subheader>
+                      {product.category.categoryName}
+                    </Header.Subheader>
                   </Header.Content>
                 </Header>
               </Table.Cell>
@@ -63,13 +86,15 @@ const Lists = () => {
               <Table.Cell>
                 {" "}
                 <Input
+                  
+                  key={product.productId}
                   onChange={(e) => setQuantity(e.target.value)}
                   transparent
                   placeholder="Quantity"
                 />
               </Table.Cell>
-              <Table.Cell>{product.price}</Table.Cell>
-              <Table.Cell>{quantity * product.price}</Table.Cell>
+              <Table.Cell key={product.productId}>{product.price}</Table.Cell>
+              <Table.Cell key={product.productId}>{quantity * product.price}</Table.Cell>
               <Table.Cell>
                 {" "}
                 <Button as="div" labelPosition="right">
